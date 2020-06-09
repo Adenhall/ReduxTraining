@@ -9,26 +9,33 @@ import {createStore} from 'redux'
 const initialState = {
   count: 0,
   color: "",
-  boxColor: []
+  boxColor: [],
+  textColor: "black",
+  numberChange: 1
 }
 
 const reducer = (state=initialState, action) => {
   if (action.type === "INCREMENT") {
-    state.count++
+    state.count+= state.numberChange
   }
   if (action.type === "DECREMENT") {
-    state.count--
+    state.count-= state.numberChange
   }
-
-if (action.type === "RESET") {
-  state.count=0
-}
-if (action.type === "CHANGE_BOX_COLOR") {
-  state.color = action.payload
-}
-if (action.type === "CHANGE_SPECIFIC_BOX_COLOR") {
-  state.boxColor[action.payload.idx] = action.payload.color
-}
+  if(action.type === "GET_NUMBER_CHANGE") {
+    state.numberChange = action.payload
+  }
+  if (action.type === "RESET") {
+    state.count=0
+  }
+  if (action.type === "CHANGE_BOX_COLOR") {
+    state.color = action.payload
+  }
+  if (action.type === "CHANGE_SPECIFIC_BOX_COLOR") {
+    state.boxColor[action.payload.idx] = action.payload.color
+  }
+  if (state.count > 10) {
+    state.textColor = "yellow"
+  } else state.textColor = "black"
   return {...state}
 }
 
