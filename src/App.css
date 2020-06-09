@@ -1,0 +1,9 @@
+.App {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+.color-box {
+  border: 3px solid black;
+  width: 150px;
+}
